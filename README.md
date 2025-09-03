@@ -20,7 +20,7 @@
 
 ```bash
 # Клонирование репозитория
-git clone <repository-url>
+git clone https://github.com/lizochka-bogdanovaa/SHIFT_Java_TestTask.git
 cd SHIFT_Java_TestTask
 
 # Сборка проекта
