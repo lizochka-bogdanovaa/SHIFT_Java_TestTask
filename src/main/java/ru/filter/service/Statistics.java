@@ -1,5 +1,7 @@
 package ru.filter.service;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 
 public class Statistics {
     private long count = 0;
@@ -50,14 +52,22 @@ public class Statistics {
     public double getSumFloat() { return sumFloat; }
     public double getAverage() {
         if (count > 0) {
+            double average;
             if (sumInt.equals(BigInteger.ZERO)) {
-                return sumFloat / count;
+                average = sumFloat / count;
             } else {
-                return sumInt.doubleValue() / count;
+                average = sumInt.doubleValue() / count;
             }
+            return roundAverage(average);
         } else {
             return 0;
         }
+    }
+
+    private double roundAverage(double value) {
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(5, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
     public int getMinStringLength() { return minStringLength == Integer.MAX_VALUE ? 0 : minStringLength; }
     public int getMaxStringLength() { return maxStringLength; }
